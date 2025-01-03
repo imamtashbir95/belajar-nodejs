@@ -1,0 +1,27 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    if (nums.length === 0) return 0;
+
+    let k = 1; // Initialize the slow pointer to track the unique elements
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] !== nums[k - 1]) { // Check if the current number is unique
+            nums[k] = nums[i]; // Update the position for the unique element
+            k++; // Increment the count of unique elements
+        }
+    }
+
+    return k; // Return the count of unique elements
+};
+
+const nums1 = [1, 1, 2];
+const k1 = removeDuplicates(nums1);
+console.log(k1); // Output: 2
+console.log(nums1.slice(0, k1)); // Output: [1, 2]
+
+const nums2 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4];
+const k2 = removeDuplicates(nums2);
+console.log(k2); // Output: 5
+console.log(nums2.slice(0, k2)); // Output: [0, 1, 2, 3, 4]
